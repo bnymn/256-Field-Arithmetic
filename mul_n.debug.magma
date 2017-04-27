@@ -1,0 +1,120 @@
+B := 2^64;
+
+rbx := 0x2f;
+
+r8 := 0x8bb4f1d13ac3088e;
+r9 := 0x97286de80b47850a;
+r10 := 0x738f3546d2a3ea5d;
+r11 := 0x86a8faf88804757a;
+
+r12 := 0xb47d55d81f01f813;
+r13 := 0x7c49f41b3bb8267b;
+r14 := 0xffbe2eacbfed3232;
+r15 := 0x29d3db94211f535;
+
+
+result := B^7 * r15 + B^6 * r14 + B^5 * r13 + B^4 * r12 + B^3 * r11 + B^2 * r10 + B^1 * r9 + B^0 * r8;
+print "result := ", (result mod (B^4 - rbx)):Hex;
+print "---";
+
+
+r8 := r8 + (r12 * rbx) mod B;
+r9 := r9 + r8 div B + (r12 * rbx) div B;
+r10 := r10 + r9 div B;
+r9 := r9 mod B;
+r8 := r8 mod B;
+print "r8 := ", r8:Hex;
+print "r9 := ", r9:Hex;
+print "r10 := ", r10:Hex;
+print "--";
+
+r9 := r9 + (r13 * rbx) mod B;
+r10 := r10 + r9 div B + (r13 * rbx) div B;
+r11 := r11 + r10 div B;
+r10 := r10 mod B;
+r9 := r9 mod B;
+print "r9 := ", r9:Hex;
+print "r10 := ", r10:Hex;
+print "r11 := ", r11:Hex;
+print "--";
+
+r12 := 0;
+r13 := 0;
+
+r10 := r10 + (r14 * rbx) mod B;
+r11 := r11 + r10 div B + (r14 * rbx) div B;
+r12 := r12 + r11 div B;
+r11 := r11 mod B;
+r10 := r10 mod B;
+print "r10 := ", r10:Hex;
+print "r11 := ", r11:Hex;
+print "r12 := ", r12:Hex;
+print "--";
+
+r11 := r11 + (r15 * rbx) mod B;
+r12 := r12 + r11 div B + (r15 * rbx) div B;
+r13 := r13 + r12 div B;
+r12 := r12 mod B;
+r11 := r11 mod B;
+print "r11 := ", r11:Hex;
+print "r12 := ", r12:Hex;
+print "r13 := ", r13:Hex;
+print "--";
+
+r8 := r8 + (r12 * rbx) mod B;
+r9 := r9 + r8 div B + (r12 * rbx) div B;
+r10 := r10 + r9 div B;
+r9 := r9 mod B;
+r8 := r8 mod B;
+print "r8 := ", r8:Hex;
+print "r9 := ", r9:Hex;
+print "r10 := ", r10:Hex;
+print "--";
+
+r9 := r9 + (r13 * rbx) mod B;
+r10 := r10 + r9 div B + (r13 * rbx) div B;
+r11 := r11 + r10 div B;
+r10 := r10 mod B;
+r9 := r9 mod B;
+print "r9 := ", r9:Hex;
+print "r10 := ", r10:Hex;
+print "r11 := ", r11:Hex;
+print "--";
+
+r12 := r8;
+r13 := r9;
+r14 := r10;
+r15 := r11;
+
+r8 := r8 + rbx;
+r9 := r9 + r8 div B;
+r10 := r10 + r9 div B;
+r11 := r11 + r10 div B;
+r10 := r10 mod B;
+r9 := r9 mod B;
+r8 := r8 mod B;
+carry := (r11 div B);
+print "carry := ", carry;
+print "r8 := ", r8:Hex;
+print "r9 := ", r9:Hex;
+print "r10 := ", r10:Hex;
+r11 := r11 mod B;
+print "r11 := ", r11:Hex;
+print "---";
+
+if carry eq 0 then
+	r8 := r12;
+	r9 := r13;
+	r10 := r14;
+	r11 := r15;
+	
+	print "r8 := ", r8:Hex;
+	print "r9 := ", r9:Hex;
+	print "r10 := ", r10:Hex;
+	print "r11 := ", r11:Hex;
+end if;
+
+
+result := B^3 * r11 + B^2 * r10 + B^1 * r9 + B^0 * r8;
+print "result := ", result:Hex;
+print "---";
